@@ -70,13 +70,42 @@ let
           nativeBuildInputs = (prevAttrs.nativeBuildInputs or []) ++ [ final.poetry-core ];
         }
       );
-
+       aiohappyeyeballs = prev.aiohappyeyeballs.overridePythonAttrs (
+        prevAttrs: {
+          format = "pyproject";
+          nativeBuildInputs = (prevAttrs.nativeBuildInputs or []) ++ [ final.poetry-core ];
+        }
+      );
       s3-tar = prev.s3-tar.overridePythonAttrs (
         prevAttrs: {
           format = "setuptools";
         }
       );
-    }));
+      psycopg2 = prev.psycopg2.overridePythonAttrs (
+        prevAttrs: {
+          postPatch = (prevAttrs.postPatch or "") +
+          ''
+            substituteInPlace setup.py \
+              --replace-fail "self.pg_config_exe = self.build_ext.pg_config" 'self.pg_config_exe = "${pkgs.libpq.pg_config}/bin/pg_config"'
+          '';
+        }
+      );
+    })) 
+    ++ [
+      (final: prev: {
+        # using fetchCargoVendor instead of fetchCargoTarball
+        # this is an override for a poetry2nix bundled override, so it comes
+        # after the withDefaults overrides
+        cryptography = prev.cryptography.overridePythonAttrs (prevAttrs: {
+          cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+            inherit (prevAttrs) src;
+            name = "${prevAttrs.pname}-${prevAttrs.version}";
+            sourceRoot = "${prevAttrs.pname}-${prevAttrs.version}/src/rust";
+            hash = "sha256-rioZi/lxMHeTLUb8GGRcBP7pCeoBsbhaczTWkCD0ApE=";
+          };
+        });
+      })
+    ];
 
     meta = with lib; {
       homepage = "https://bookwyrm.social/";
