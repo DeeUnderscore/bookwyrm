@@ -1,11 +1,13 @@
-{ config
-, lib
-, pkgs
-, ... }: 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-with lib; 
+with lib;
 
-let 
+let
   cfg = config.services.bookwyrm;
   redisCfg = config.services.redis.servers;
   env = {
@@ -21,37 +23,51 @@ let
     POSTGRES_DB = cfg.database.database;
     REDIS_ACTIVITY_HOST = cfg.activityRedis.host;
     REDIS_ACTIVITY_PORT = (toString cfg.activityRedis.port);
-    REDIS_ACTIVITY_SOCKET = (if cfg.activityRedis.unixSocket != null then cfg.activityRedis.unixSocket else "");
-    REDIS_BROKER_HOST  = cfg.celeryRedis.host;
+    REDIS_ACTIVITY_SOCKET = (
+      if cfg.activityRedis.unixSocket != null then cfg.activityRedis.unixSocket else ""
+    );
+    REDIS_BROKER_HOST = cfg.celeryRedis.host;
     REDIS_BROKER_PORT = (toString cfg.celeryRedis.port);
-    REDIS_BROKER_SOCKET = (if cfg.celeryRedis.unixSocket != null then cfg.celeryRedis.unixSocket else "");
+    REDIS_BROKER_SOCKET = (
+      if cfg.celeryRedis.unixSocket != null then cfg.celeryRedis.unixSocket else ""
+    );
     EMAIL_HOST = cfg.email.host;
     EMAIL_PORT = (toString cfg.email.port);
     EMAIL_HOST_USER = cfg.email.user;
     EMAIL_USE_TLS = if cfg.email.useTLS then "true" else "false";
     EMAIL_USE_SSL = if cfg.email.useSSL then "true" else "false";
   };
-  # mapping of env variable → its secret file 
-  envSecrets = (filterAttrs (_: v: v != null) {
-    SECRET_KEY = cfg.secretKeyFile;
-    POSTGRES_PASSWORD = cfg.database.passwordFile;
-    EMAIL_HOST_PASSWORD = cfg.email.passwordFile;
-  });
+  # mapping of env variable → its secret file
+  envSecrets = (
+    filterAttrs (_: v: v != null) {
+      SECRET_KEY = cfg.secretKeyFile;
+      POSTGRES_PASSWORD = cfg.database.passwordFile;
+      EMAIL_HOST_PASSWORD = cfg.email.passwordFile;
+    }
+  );
 
   locallyCreatedRedisUnits =
     optional cfg.activityRedis.createLocally "redis-bookwyrm-activity.service"
     ++ optional cfg.celeryRedis.createLocally "redis-bookwyrm-celery.service";
 
-  loadEnv = (pkgs.writeScript "load-bookwyrm-env" ''
-    #!/usr/bin/env bash
-    ${lib.concatStringsSep "\n" (lib.mapAttrsToList (n: v: "export ${n}=${lib.escapeShellArg v}") env)}
-    ${lib.concatStringsSep "\n" (lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${lib.escapeShellArg v})"'')  envSecrets)} 
-  '');
-  bookwyrmManageScript = bookwyrm: (pkgs.writeScriptBin "bookwyrm-manage" ''
-    #!/usr/bin/env bash 
-    source ${loadEnv}
-    exec ${bookwyrm}/libexec/bookwyrm/manage.py "$@"
-  '');
+  loadEnv = (
+    pkgs.writeScript "load-bookwyrm-env" ''
+      #!/usr/bin/env bash
+      ${lib.concatStringsSep "\n" (lib.mapAttrsToList (n: v: "export ${n}=${lib.escapeShellArg v}") env)}
+      ${
+        lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${lib.escapeShellArg v})"'') envSecrets
+        )
+      } 
+    ''
+  );
+  bookwyrmManageScript =
+    bookwyrm:
+    (pkgs.writeScriptBin "bookwyrm-manage" ''
+      #!/usr/bin/env bash 
+      source ${loadEnv}
+      exec ${bookwyrm}/libexec/bookwyrm/manage.py "$@"
+    '');
 in
 {
   options.services.bookwyrm = {
@@ -63,7 +79,7 @@ in
       description = "Bookwyrm package to use";
     };
 
-    user = mkOption { 
+    user = mkOption {
       type = types.str;
       default = "bookwyrm";
       description = "User to run bookwyrm as.";
@@ -75,7 +91,7 @@ in
       description = "Group to run bookwyrm as.";
     };
 
-    stateDir = mkOption { 
+    stateDir = mkOption {
       type = types.str;
       default = "/var/lib/bookwyrm";
       description = "Data directory for Bookwyrm.";
@@ -84,8 +100,11 @@ in
     bindTo = mkOption {
       type = types.listOf types.str;
       default = [ "unix:/run/bookwyrm/bookwyrm.sock" ];
-      example = [ "unix:/run/bookwyrm-gunicorn.sock" "127.0.0.1:12345" ];
-      description = "List of sockets for Gunicorn to bind to"; 
+      example = [
+        "unix:/run/bookwyrm-gunicorn.sock"
+        "127.0.0.1:12345"
+      ];
+      description = "List of sockets for Gunicorn to bind to";
     };
 
     flowerArgs = mkOption {
@@ -132,7 +151,7 @@ in
       '';
     };
 
-    debug = mkOption { 
+    debug = mkOption {
       type = types.bool;
       default = false;
       description = ''
@@ -149,12 +168,12 @@ in
       };
 
       host = mkOption {
-        type = types.str; 
+        type = types.str;
         default = "";
         description = ''
           Postgresql host address. Set to empty string <literal>""</literal> to
           use unix sockets. 
-          '';
+        '';
       };
 
       port = mkOption {
@@ -195,8 +214,7 @@ in
       };
     };
 
-
-    # TODO: Perhaps support passwords for the redises 
+    # TODO: Perhaps support passwords for the redises
     activityRedis = {
       createLocally = mkOption {
         type = types.bool;
@@ -206,10 +224,10 @@ in
 
       # note that there are assertions to prevent three of these being null
       host = mkOption {
-        type = types.nullOr types.str; 
+        type = types.nullOr types.str;
         default = null;
         description = "Activity Redis host address.";
-      }; 
+      };
 
       port = mkOption {
         type = types.nullOr types.int;
@@ -237,10 +255,10 @@ in
 
       # note that there are assertions to prevent all three of these being null
       host = mkOption {
-        type = types.nullOr types.str; 
+        type = types.nullOr types.str;
         default = null;
         description = "Activity Redis host address.";
-      }; 
+      };
 
       port = mkOption {
         type = types.nullOr types.int;
@@ -312,40 +330,68 @@ in
   };
 
   config = mkIf cfg.enable {
-    warnings = 
-      (optional (cfg.secretKey != "") "config.services.bookwyrm.secretKey will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.secretKeyFile instead.")
-      ++ (optional (cfg.database.password != "") "config.services.bookwyrm.database.password will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.database.passwordFile instead.")
-      ++ (optional (cfg.email.password != "") "config.services.bookwyrm.email.password will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.email.passwordFile instead.");
+    warnings =
+      (optional (cfg.secretKey != "")
+        "config.services.bookwyrm.secretKey will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.secretKeyFile instead."
+      )
+      ++ (optional (cfg.database.password != "")
+        "config.services.bookwyrm.database.password will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.database.passwordFile instead."
+      )
+      ++ (optional (cfg.email.password != "")
+        "config.services.bookwyrm.email.password will be stored in plain text in the Nix store, where it will be world readable. To avoid this, consider using config.services.bookwyrm.email.passwordFile instead."
+      );
 
     assertions = [
-      { assertion = cfg.activityRedis.unixSocket != null || (cfg.activityRedis.host != null && cfg.activityRedis.port != null);
+      {
+        assertion =
+          cfg.activityRedis.unixSocket != null
+          || (cfg.activityRedis.host != null && cfg.activityRedis.port != null);
         message = "config.services.bookwyrm.activityRedis needs to have either a unixSocket defined, or both a host and a port defined.";
       }
-      { assertion = cfg.celeryRedis.unixSocket != null || (cfg.celeryRedis.host != null && cfg.celeryRedis.port != null);
+      {
+        assertion =
+          cfg.celeryRedis.unixSocket != null
+          || (cfg.celeryRedis.host != null && cfg.celeryRedis.port != null);
         message = "config.services.bookwyrm.celeryRedis needs to have either a unixSocket defined, or both a host and a port defined.";
       }
-      { assertion = !(cfg.email.useTLS && cfg.email.useSSL);
+      {
+        assertion = !(cfg.email.useTLS && cfg.email.useSSL);
         message = "Only one of email.useTLS or email.useSSL can be set to true at a time.";
       }
     ];
 
-    services.bookwyrm.secretKeyFile = 
-      (mkDefault (toString (pkgs.writeTextFile {
-        name = "bookwyrm-secretkeyfile";
-        text = cfg.secretKey;
-      })));
+    services.bookwyrm.secretKeyFile = (
+      mkDefault (
+        toString (
+          pkgs.writeTextFile {
+            name = "bookwyrm-secretkeyfile";
+            text = cfg.secretKey;
+          }
+        )
+      )
+    );
 
-    services.bookwyrm.database.passwordFile = 
-      (mkDefault (toString (pkgs.writeTextFile {
-          name = "bookwyrm-secretkeyfile";
-          text = cfg.database.password;
-      })));
+    services.bookwyrm.database.passwordFile = (
+      mkDefault (
+        toString (
+          pkgs.writeTextFile {
+            name = "bookwyrm-secretkeyfile";
+            text = cfg.database.password;
+          }
+        )
+      )
+    );
 
-    services.bookwyrm.email.passwordFile = 
-      (mkDefault (toString (pkgs.writeTextFile {
-        name = "bookwyrm-email-passwordfile";
-        text = cfg.email.password;
-      })));
+    services.bookwyrm.email.passwordFile = (
+      mkDefault (
+        toString (
+          pkgs.writeTextFile {
+            name = "bookwyrm-email-passwordfile";
+            text = cfg.email.password;
+          }
+        )
+      )
+    );
 
     users.users = mkIf (cfg.user == "bookwyrm") {
       bookwyrm = {
@@ -353,13 +399,14 @@ in
         group = "bookwyrm";
         useDefaultShell = true;
         isSystemUser = true;
-        extraGroups = optional cfg.activityRedis.createLocally redisCfg.bookwyrm-activity.user
-            ++ optional cfg.celeryRedis.createLocally redisCfg.bookwyrm-celery.user;
+        extraGroups =
+          optional cfg.activityRedis.createLocally redisCfg.bookwyrm-activity.user
+          ++ optional cfg.celeryRedis.createLocally redisCfg.bookwyrm-celery.user;
       };
     };
 
     users.groups = mkIf (cfg.group == "bookwyrm") {
-      bookwyrm = { };  
+      bookwyrm = { };
     };
 
     services.postgresql = optionalAttrs (cfg.database.createLocally) {
@@ -367,24 +414,29 @@ in
 
       ensureDatabases = [ cfg.database.database ];
       ensureUsers = [
-        { name = cfg.database.user;
-          ensurePermissions = { "DATABASE ${cfg.database.database}" = "ALL PRIVILEGES"; }; 
+        {
+          name = cfg.database.user;
+          ensurePermissions = {
+            "DATABASE ${cfg.database.database}" = "ALL PRIVILEGES";
+          };
         }
       ];
     };
 
-    services.redis.servers = optionalAttrs cfg.activityRedis.createLocally {
-      bookwyrm-activity = {
-        enable = true;
+    services.redis.servers =
+      optionalAttrs cfg.activityRedis.createLocally {
+        bookwyrm-activity = {
+          enable = true;
+        };
+      }
+      // optionalAttrs cfg.celeryRedis.createLocally {
+        bookwyrm-celery = {
+          enable = true;
+        };
       };
-    } // optionalAttrs cfg.celeryRedis.createLocally {
-      bookwyrm-celery = {
-        enable = true;
-      };
-    };
 
     services.bookwyrm.activityRedis.unixSocket = mkIf cfg.activityRedis.createLocally config.services.redis.servers.bookwyrm-activity.unixSocket;
-    services.bookwyrm.celeryRedis.unixSocket =  mkIf cfg.celeryRedis.createLocally config.services.redis.servers.bookwyrm-celery.unixSocket;
+    services.bookwyrm.celeryRedis.unixSocket = mkIf cfg.celeryRedis.createLocally config.services.redis.servers.bookwyrm-celery.unixSocket;
 
     systemd.targets.bookwyrm = {
       description = "Target for all bookwyrm services";
@@ -400,16 +452,20 @@ in
 
     systemd.services.bookwyrm = {
       description = "Bookwyrm reading and reviewing social network server";
-      after = [ 
-        "network.target"
-        "redis.service"
-        "postgresql.service"
-        "bookwyrm-celery.service"
-      ] ++ locallyCreatedRedisUnits
-        ++ optional cfg.database.createLocally "postgresql.service"; 
-      bindsTo = [
-        "bookwyrm-celery.service"
-      ] ++ locallyCreatedRedisUnits
+      after =
+        [
+          "network.target"
+          "redis.service"
+          "postgresql.service"
+          "bookwyrm-celery.service"
+        ]
+        ++ locallyCreatedRedisUnits
+        ++ optional cfg.database.createLocally "postgresql.service";
+      bindsTo =
+        [
+          "bookwyrm-celery.service"
+        ]
+        ++ locallyCreatedRedisUnits
         ++ optional cfg.database.createLocally "postgresql.service";
       wantedBy = [ "bookwyrm.target" ];
       partOf = [ "bookwyrm.target" ];
@@ -424,14 +480,18 @@ in
 
       # TODO: Maybe populate static assets at bookwyrm build time?
       preStart = ''
-        ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets)}
+        ${concatStringsSep "\n" (
+          mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets
+        )}
         ${cfg.package}/libexec/bookwyrm/manage.py migrate --noinput
         ${cfg.package}/libexec/bookwyrm/manage.py collectstatic --noinput --clear
         ${cfg.package}/libexec/bookwyrm/manage.py compile_themes
       '';
 
       script = ''
-        ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets)}
+        ${concatStringsSep "\n" (
+          mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets
+        )}
         exec ${cfg.package}/bin/gunicorn bookwyrm.wsgi:application \
           ${concatStringsSep " " (map (elem: "--bind ${elem}") cfg.bindTo)} \
           --umask 0007
@@ -440,7 +500,7 @@ in
 
     systemd.services.bookwyrm-celery = {
       description = "Celery service for bookwyrm.";
-      after = [ 
+      after = [
         "network.target"
       ] ++ locallyCreatedRedisUnits;
       bindsTo = locallyCreatedRedisUnits;
@@ -456,7 +516,9 @@ in
       };
 
       script = ''
-        ${lib.concatStringsSep "\n" (lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets)}
+        ${lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets
+        )}
         exec ${cfg.package}/bin/celery -A celerywyrm worker --loglevel=INFO -Q high_priority,medium_priority,low_priority,streams,images,suggested_users,email,connectors,lists,inbox,imports,import_triggered,broadcast,misc
       '';
 
@@ -464,7 +526,7 @@ in
 
     systemd.services.bookwyrm-flower = {
       description = "Flower monitoring tool for bookwyrm-celery";
-      after = [ 
+      after = [
         "network.target"
         "redis.service"
         "bookwyrm-celery.service"
@@ -482,13 +544,15 @@ in
       };
 
       script = ''
-        ${lib.concatStringsSep "\n" (lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets)}
+        ${lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets
+        )}
         exec ${cfg.package}/bin/celery -A celerywyrm flower \
           ${lib.concatStringsSep " " cfg.flowerArgs}
       '';
 
     };
-    
+
     environment.systemPackages = [ (bookwyrmManageScript cfg.package) ];
   };
 }
