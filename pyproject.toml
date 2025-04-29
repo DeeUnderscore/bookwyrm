@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bookwyrm"
-version = "0.7.4"
+version = "0.7.5"
 description = "Social reading and reviewing, decentralized with ActivityPub"
 authors = ["Mouse Reeve <mousereeve@riseup.net>"]
 
