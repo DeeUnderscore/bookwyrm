@@ -178,7 +178,7 @@ in
 
       port = mkOption {
         type = types.int;
-        default = config.services.postgresql.port;
+        default = config.services.postgresql.settings.port;
         description = "Port of the Postgresql server to connect to.";
       };
 
