@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bookwyrm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-17 21:56+0000\n"
-"PO-Revision-Date: 2025-01-06 13:06\n"
+"POT-Creation-Date: 2025-06-23 23:50+0000\n"
+"PO-Revision-Date: 2025-06-24 08:27\n"
 "Last-Translator: Mouse Reeve <mousereeve@riseup.net>\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
@@ -46,7 +46,7 @@ msgstr "Onbeperkt"
 msgid "Incorrect password"
 msgstr "Onjuist wachtwoord"
 
-#: bookwyrm/forms/edit_user.py:112 bookwyrm/forms/landing.py:89
+#: bookwyrm/forms/edit_user.py:112 bookwyrm/forms/landing.py:93
 msgid "Password does not match"
 msgstr "Wachtwoord komt niet overeen"
 
@@ -82,7 +82,11 @@ msgstr "Er bestaat al een gebruiker met deze gebruikersnaam"
 msgid "A user with this email already exists."
 msgstr "Er bestaat al een gebruiker met dit e-mailadres."
 
-#: bookwyrm/forms/landing.py:123 bookwyrm/forms/landing.py:131
+#: bookwyrm/forms/landing.py:69
+msgid "This email address cannot be registered."
+msgstr "Dit e-mailadres kan niet geregistreerd worden."
+
+#: bookwyrm/forms/landing.py:127 bookwyrm/forms/landing.py:135
 msgid "Incorrect code"
 msgstr "Ongeldige code"
 
@@ -102,8 +106,8 @@ msgstr "Lijst volgorde"
 msgid "Book Title"
 msgstr "Boektitel"
 
-#: bookwyrm/forms/lists.py:28 bookwyrm/templates/shelf/shelf.html:159
-#: bookwyrm/templates/shelf/shelf.html:191
+#: bookwyrm/forms/lists.py:28 bookwyrm/templates/shelf/shelf.html:164
+#: bookwyrm/templates/shelf/shelf.html:196
 #: bookwyrm/templates/snippets/create_status/review.html:32
 msgid "Rating"
 msgstr "Beoordeling"
@@ -172,25 +176,87 @@ msgstr "Verwijdering moderator"
 msgid "Domain block"
 msgstr "Domeinblokkade"
 
-#: bookwyrm/models/book.py:440
+#: bookwyrm/models/book.py:444
 msgid "Audiobook"
 msgstr "Luisterboek"
 
-#: bookwyrm/models/book.py:441
+#: bookwyrm/models/book.py:445
 msgid "eBook"
 msgstr "eBook"
 
-#: bookwyrm/models/book.py:442
+#: bookwyrm/models/book.py:446
 msgid "Graphic novel"
 msgstr "Striproman"
 
-#: bookwyrm/models/book.py:443
+#: bookwyrm/models/book.py:447
 msgid "Hardcover"
 msgstr "Harde kaft"
 
-#: bookwyrm/models/book.py:444
+#: bookwyrm/models/book.py:448
 msgid "Paperback"
 msgstr "Zachte kaft"
+
+#: bookwyrm/models/book.py:457 bookwyrm/models/book.py:464
+#: bookwyrm/models/book.py:470 bookwyrm/models/book.py:475
+#: bookwyrm/models/book.py:480 bookwyrm/models/book.py:498
+#: bookwyrm/models/book.py:504 bookwyrm/models/book.py:509
+#: bookwyrm/models/book.py:514 bookwyrm/models/book.py:519
+#, python-format
+msgid "%(value)s doesn't look like an ISBN"
+msgstr "%(value)s lijkt niet op een ISBN"
+
+#: bookwyrm/models/book.py:486 bookwyrm/models/book.py:526
+#, python-format
+msgid "%(value)s doesn't have correct ISBN checksum, we expected %(check_version)s"
+msgstr "%(value)s heeft niet de juiste ISBN controlesom, we verwachten %(check_version)s"
+
+#: bookwyrm/models/bookwyrm_import_job.py:109 bookwyrm/models/report.py:84
+#: bookwyrm/templates/settings/reports/report.html:115
+#: bookwyrm/templates/snippets/create_status.html:26
+msgid "Comment"
+msgstr "Opmerking"
+
+#: bookwyrm/models/bookwyrm_import_job.py:110
+#: bookwyrm/templates/import/import_status.html:127
+#: bookwyrm/templates/import/manual_review.html:13
+#: bookwyrm/templates/snippets/create_status.html:16
+msgid "Review"
+msgstr "Recensie"
+
+#: bookwyrm/models/bookwyrm_import_job.py:111
+msgid "Quotation"
+msgstr ""
+
+#: bookwyrm/models/bookwyrm_import_job.py:132
+#: bookwyrm/templates/snippets/follow_button.html:22
+msgid "Follow"
+msgstr "Volgen"
+
+#: bookwyrm/models/bookwyrm_import_job.py:133
+#: bookwyrm/templates/settings/federation/instance.html:116
+#: bookwyrm/templates/settings/link_domains/link_domains.html:87
+#: bookwyrm/templates/snippets/block_button.html:5
+msgid "Block"
+msgstr "Blokkeren"
+
+#: bookwyrm/models/bookwyrm_import_job.py:275
+#: bookwyrm/models/bookwyrm_import_job.py:379
+#: bookwyrm/models/bookwyrm_import_job.py:611
+msgid "unknown"
+msgstr "onbekend"
+
+#: bookwyrm/models/bookwyrm_import_job.py:373
+msgid "unauthorized"
+msgstr "ongeautoriseerd"
+
+#: bookwyrm/models/bookwyrm_import_job.py:569
+#: bookwyrm/models/bookwyrm_import_job.py:595
+msgid "connection_error"
+msgstr ""
+
+#: bookwyrm/models/bookwyrm_import_job.py:605
+msgid "invalid_relationship"
+msgstr ""
 
 #: bookwyrm/models/federated_server.py:11
 #: bookwyrm/templates/settings/federation/edit_instance.html:55
@@ -216,16 +282,16 @@ msgstr "%(value)s is geen geldige remote_id"
 msgid "%(value)s is not a valid username"
 msgstr "%(value)s is geen geldige gebruikersnaam"
 
-#: bookwyrm/models/fields.py:197 bookwyrm/templates/layout.html:129
+#: bookwyrm/models/fields.py:201 bookwyrm/templates/layout.html:129
 #: bookwyrm/templates/ostatus/error.html:29
 msgid "username"
 msgstr "gebruikersnaam"
 
-#: bookwyrm/models/fields.py:202
+#: bookwyrm/models/fields.py:206
 msgid "A user with that username already exists."
 msgstr "Er bestaat al een gebruiker met deze gebruikersnaam."
 
-#: bookwyrm/models/fields.py:221
+#: bookwyrm/models/fields.py:225
 #: bookwyrm/templates/snippets/privacy-icons.html:3
 #: bookwyrm/templates/snippets/privacy-icons.html:4
 #: bookwyrm/templates/snippets/privacy_select.html:11
@@ -233,7 +299,7 @@ msgstr "Er bestaat al een gebruiker met deze gebruikersnaam."
 msgid "Public"
 msgstr "Openbaar"
 
-#: bookwyrm/models/fields.py:222
+#: bookwyrm/models/fields.py:226
 #: bookwyrm/templates/snippets/privacy-icons.html:7
 #: bookwyrm/templates/snippets/privacy-icons.html:8
 #: bookwyrm/templates/snippets/privacy_select.html:14
@@ -241,7 +307,7 @@ msgstr "Openbaar"
 msgid "Unlisted"
 msgstr "Niet vermeld"
 
-#: bookwyrm/models/fields.py:223
+#: bookwyrm/models/fields.py:227
 #: bookwyrm/templates/snippets/privacy_select.html:17
 #: bookwyrm/templates/user/relationships/followers.html:6
 #: bookwyrm/templates/user/relationships/followers.html:11
@@ -250,7 +316,7 @@ msgstr "Niet vermeld"
 msgid "Followers"
 msgstr "Volgers"
 
-#: bookwyrm/models/fields.py:224
+#: bookwyrm/models/fields.py:228
 #: bookwyrm/templates/snippets/create_status/post_options_block.html:6
 #: bookwyrm/templates/snippets/privacy-icons.html:15
 #: bookwyrm/templates/snippets/privacy-icons.html:16
@@ -260,9 +326,10 @@ msgid "Private"
 msgstr "Privé"
 
 #: bookwyrm/models/import_job.py:50 bookwyrm/models/job.py:19
-#: bookwyrm/templates/import/import.html:181
-#: bookwyrm/templates/import/import_user.html:211
-#: bookwyrm/templates/preferences/export-user.html:121
+#: bookwyrm/templates/import/import.html:184
+#: bookwyrm/templates/import/import_user.html:225
+#: bookwyrm/templates/import/user_import_status.html:56
+#: bookwyrm/templates/preferences/export-user.html:139
 #: bookwyrm/templates/settings/imports/imports.html:180
 #: bookwyrm/templates/settings/imports/imports.html:270
 #: bookwyrm/templates/snippets/user_active_tag.html:8
@@ -270,9 +337,10 @@ msgid "Active"
 msgstr "Actief"
 
 #: bookwyrm/models/import_job.py:51 bookwyrm/models/job.py:20
-#: bookwyrm/templates/import/import.html:179
-#: bookwyrm/templates/import/import_user.html:209
-#: bookwyrm/templates/preferences/export-user.html:119
+#: bookwyrm/templates/import/import.html:182
+#: bookwyrm/templates/import/import_user.html:223
+#: bookwyrm/templates/import/user_import_status.html:54
+#: bookwyrm/templates/preferences/export-user.html:137
 msgid "Complete"
 msgstr "Voltooid"
 
@@ -293,6 +361,7 @@ msgid "Could not find a match for book"
 msgstr "Kan geen match vinden voor het boek"
 
 #: bookwyrm/models/job.py:22
+#: bookwyrm/templates/import/user_import_status.html:69
 msgid "Failed"
 msgstr "Mislukt"
 
@@ -312,12 +381,6 @@ msgstr "Te leen"
 #: bookwyrm/templates/settings/link_domains/link_domains.html:23
 msgid "Approved"
 msgstr "Goedgekeurd"
-
-#: bookwyrm/models/report.py:84
-#: bookwyrm/templates/settings/reports/report.html:115
-#: bookwyrm/templates/snippets/create_status.html:26
-msgid "Comment"
-msgstr "Opmerking"
 
 #: bookwyrm/models/report.py:85
 msgid "Resolved report"
@@ -398,7 +461,7 @@ msgstr "Recensies"
 msgid "Comments"
 msgstr "Opmerkingen"
 
-#: bookwyrm/models/user.py:38 bookwyrm/templates/import/import_user.html:139
+#: bookwyrm/models/user.py:38 bookwyrm/templates/import/import_user.html:154
 msgid "Quotations"
 msgstr "Quotes"
 
@@ -406,111 +469,112 @@ msgstr "Quotes"
 msgid "Everything else"
 msgstr "Overig"
 
-#: bookwyrm/settings.py:236
+#: bookwyrm/settings.py:235
 msgid "Home Timeline"
 msgstr "Tijdlijnen"
 
-#: bookwyrm/settings.py:236
+#: bookwyrm/settings.py:235
 msgid "Home"
 msgstr "Start"
 
-#: bookwyrm/settings.py:237
+#: bookwyrm/settings.py:236
 msgid "Books Timeline"
 msgstr "Boeken tijdlijn"
 
-#: bookwyrm/settings.py:237
+#: bookwyrm/settings.py:236
 #: bookwyrm/templates/guided_tour/user_profile.html:101
+#: bookwyrm/templates/import/user_import_status.html:73
 #: bookwyrm/templates/search/layout.html:22
 #: bookwyrm/templates/search/layout.html:44
 #: bookwyrm/templates/user/layout.html:107
 msgid "Books"
 msgstr "Boeken"
 
-#: bookwyrm/settings.py:314
+#: bookwyrm/settings.py:313
 msgid "English"
 msgstr "Engels (English)"
 
-#: bookwyrm/settings.py:315
+#: bookwyrm/settings.py:314
 msgid "Català (Catalan)"
 msgstr "Català (Catalaans)"
 
-#: bookwyrm/settings.py:316
+#: bookwyrm/settings.py:315
 msgid "Deutsch (German)"
 msgstr "Duits (Deutsch)"
 
-#: bookwyrm/settings.py:317
+#: bookwyrm/settings.py:316
 msgid "Esperanto (Esperanto)"
 msgstr "Esperanto (Esperanto)"
 
-#: bookwyrm/settings.py:318
+#: bookwyrm/settings.py:317
 msgid "Español (Spanish)"
 msgstr "Spaans (Español)"
 
-#: bookwyrm/settings.py:319
+#: bookwyrm/settings.py:318
 msgid "Euskara (Basque)"
 msgstr "Euskara (Baskisch)"
 
-#: bookwyrm/settings.py:320
+#: bookwyrm/settings.py:319
 msgid "Galego (Galician)"
 msgstr "Galego (Galicisch)"
 
-#: bookwyrm/settings.py:321
+#: bookwyrm/settings.py:320
 msgid "Italiano (Italian)"
 msgstr "Italiano (Italiaans)"
 
-#: bookwyrm/settings.py:322
+#: bookwyrm/settings.py:321
 msgid "한국어 (Korean)"
 msgstr "한국어 (Koreaans)"
 
-#: bookwyrm/settings.py:323
+#: bookwyrm/settings.py:322
 msgid "Suomi (Finnish)"
 msgstr "Suomi (Fins)"
 
-#: bookwyrm/settings.py:324
+#: bookwyrm/settings.py:323
 msgid "Français (French)"
 msgstr "Frans (Français)"
 
-#: bookwyrm/settings.py:325
+#: bookwyrm/settings.py:324
 msgid "Lietuvių (Lithuanian)"
 msgstr "Lietuvių (Litouws)"
 
-#: bookwyrm/settings.py:326
+#: bookwyrm/settings.py:325
 msgid "Nederlands (Dutch)"
 msgstr "Nederlands"
 
-#: bookwyrm/settings.py:327
+#: bookwyrm/settings.py:326
 msgid "Norsk (Norwegian)"
 msgstr "Norsk (Noors)"
 
-#: bookwyrm/settings.py:328
+#: bookwyrm/settings.py:327
 msgid "Polski (Polish)"
 msgstr "Polski (Pools)"
 
-#: bookwyrm/settings.py:329
+#: bookwyrm/settings.py:328
 msgid "Português do Brasil (Brazilian Portuguese)"
 msgstr "Português do Brasil (Braziliaans-Portugees)"
 
-#: bookwyrm/settings.py:330
+#: bookwyrm/settings.py:329
 msgid "Português Europeu (European Portuguese)"
 msgstr "Português Europeu (Europeaans Portugees)"
 
-#: bookwyrm/settings.py:331
+#: bookwyrm/settings.py:330
 msgid "Română (Romanian)"
 msgstr "Română (Roemeens)"
 
-#: bookwyrm/settings.py:332
+#: bookwyrm/settings.py:331
 msgid "Svenska (Swedish)"
 msgstr "Svenska (Zweeds)"
 
-#: bookwyrm/settings.py:333
+#: bookwyrm/settings.py:332
 msgid "Українська (Ukrainian)"
 msgstr "Українська (Oekraïens)"
 
-#: bookwyrm/settings.py:334
+#: bookwyrm/settings.py:333
 msgid "简体中文 (Simplified Chinese)"
 msgstr "简体中文 (Vereenvoudigd Chinees)"
 
-#: bookwyrm/settings.py:335
+#: bookwyrm/settings.py:334
 msgid "繁體中文 (Traditional Chinese)"
 msgstr "简体中文 (Traditioneel Chinees)"
 
@@ -645,7 +709,7 @@ msgid "Statuses posted:"
 msgstr "Statussen geplaatst:"
 
 #: bookwyrm/templates/about/layout.html:19
-#: bookwyrm/templates/setup/config.html:74
+#: bookwyrm/templates/setup/config.html:68
 msgid "Software version:"
 msgstr "Software-versie:"
 
@@ -835,44 +899,48 @@ msgid "Wikipedia"
 msgstr "Wikipedia"
 
 #: bookwyrm/templates/author/author.html:79
+msgid "View on Wikidata"
+msgstr "Bekijk op Wikidata"
+
+#: bookwyrm/templates/author/author.html:87
 msgid "Website"
 msgstr "Website"
 
-#: bookwyrm/templates/author/author.html:87
+#: bookwyrm/templates/author/author.html:95
 msgid "View ISNI record"
 msgstr "ISNI vermelding bekijken"
 
-#: bookwyrm/templates/author/author.html:95
+#: bookwyrm/templates/author/author.html:103
 #: bookwyrm/templates/book/book.html:180
 msgid "View on ISFDB"
 msgstr "Bekijk op ISFDB"
 
-#: bookwyrm/templates/author/author.html:100
+#: bookwyrm/templates/author/author.html:108
 #: bookwyrm/templates/author/sync_modal.html:5
 #: bookwyrm/templates/book/book.html:147
 #: bookwyrm/templates/book/sync_modal.html:5
 msgid "Load data"
 msgstr "Gegevens laden"
 
-#: bookwyrm/templates/author/author.html:104
+#: bookwyrm/templates/author/author.html:112
 #: bookwyrm/templates/book/book.html:151
 msgid "View on OpenLibrary"
 msgstr "Bekijk op OpenLibrary"
 
-#: bookwyrm/templates/author/author.html:119
+#: bookwyrm/templates/author/author.html:127
 #: bookwyrm/templates/book/book.html:165
 msgid "View on Inventaire"
 msgstr "Bekijk op Inventaire"
 
-#: bookwyrm/templates/author/author.html:135
+#: bookwyrm/templates/author/author.html:143
 msgid "View on LibraryThing"
 msgstr "Bekijk op LibraryThing"
 
-#: bookwyrm/templates/author/author.html:143
+#: bookwyrm/templates/author/author.html:151
 msgid "View on Goodreads"
 msgstr "Bekijk op Goodreads"
 
-#: bookwyrm/templates/author/author.html:158
+#: bookwyrm/templates/author/author.html:166
 #, python-format
 msgid "Books by %(name)s"
 msgstr "Boeken door %(name)s"
@@ -1161,27 +1229,37 @@ msgstr "ISBN gekopieerd!"
 
 #: bookwyrm/templates/book/book_identifiers.html:23
 #: bookwyrm/templates/book/edit/edit_book_form.html:352
+#: bookwyrm/templates/rss/edition.html:6
 msgid "OCLC Number:"
 msgstr "OCLC Nummer:"
 
 #: bookwyrm/templates/book/book_identifiers.html:30
 #: bookwyrm/templates/book/edit/edit_book_form.html:361
+#: bookwyrm/templates/rss/edition.html:7
 msgid "ASIN:"
 msgstr "ASIN:"
 
 #: bookwyrm/templates/book/book_identifiers.html:37
 #: bookwyrm/templates/book/edit/edit_book_form.html:370
+#: bookwyrm/templates/rss/edition.html:8
 msgid "Audible ASIN:"
 msgstr "Audible ASIN:"
 
 #: bookwyrm/templates/book/book_identifiers.html:44
 #: bookwyrm/templates/book/edit/edit_book_form.html:379
+#: bookwyrm/templates/rss/edition.html:9
 msgid "ISFDB ID:"
 msgstr "ISFDB ID:"
 
 #: bookwyrm/templates/book/book_identifiers.html:51
+#: bookwyrm/templates/rss/edition.html:10
 msgid "Goodreads:"
 msgstr "Goodreads:"
+
+#: bookwyrm/templates/book/book_identifiers.html:58
+#: bookwyrm/templates/book/edit/edit_book_form.html:388
+msgid "Finna ID:"
+msgstr ""
 
 #: bookwyrm/templates/book/cover_add_modal.html:5
 msgid "Add cover"
@@ -1373,6 +1451,7 @@ msgid "Published date:"
 msgstr "Publicatiedatum:"
 
 #: bookwyrm/templates/book/edit/edit_book_form.html:186
+#: bookwyrm/templates/import/user_import_status.html:155
 #: bookwyrm/templates/search/layout.html:23
 #: bookwyrm/templates/search/layout.html:47
 msgid "Authors"
@@ -1407,7 +1486,7 @@ msgid "Add Another Author"
 msgstr "Nog een auteur toevoegen"
 
 #: bookwyrm/templates/book/edit/edit_book_form.html:231
-#: bookwyrm/templates/shelf/shelf.html:150
+#: bookwyrm/templates/shelf/shelf.html:155
 msgid "Cover"
 msgstr "Omslag"
 
@@ -1433,6 +1512,7 @@ msgid "Book Identifiers"
 msgstr "Boek ID's"
 
 #: bookwyrm/templates/book/edit/edit_book_form.html:307
+#: bookwyrm/templates/rss/edition.html:5
 msgid "ISBN 13:"
 msgstr "ISBN 13:"
 
@@ -1529,10 +1609,12 @@ msgid "Domain"
 msgstr "Domein"
 
 #: bookwyrm/templates/book/file_links/edit_links.html:36
-#: bookwyrm/templates/import/import.html:146
+#: bookwyrm/templates/import/import.html:149
 #: bookwyrm/templates/import/import_status.html:134
-#: bookwyrm/templates/import/import_user.html:177
-#: bookwyrm/templates/preferences/export-user.html:87
+#: bookwyrm/templates/import/import_user.html:192
+#: bookwyrm/templates/import/user_import_status.html:162
+#: bookwyrm/templates/import/user_troubleshoot.html:62
+#: bookwyrm/templates/preferences/export-user.html:106
 #: bookwyrm/templates/settings/announcements/announcements.html:37
 #: bookwyrm/templates/settings/imports/imports.html:304
 #: bookwyrm/templates/settings/invites/manage_invite_requests.html:48
@@ -1594,7 +1676,7 @@ msgid "This link is taking you to: <code>%(link_url)s</code>.<br> Is that where 
 msgstr "Deze koppeling brengt je naar: <code>%(link_url)s</code>.<br> Is dat waar je heen zou willen gaan?"
 
 #: bookwyrm/templates/book/file_links/verification_modal.html:27
-#: bookwyrm/templates/setup/config.html:139
+#: bookwyrm/templates/setup/config.html:134
 msgid "Continue"
 msgstr "Ga verder"
 
@@ -2093,19 +2175,19 @@ msgid "Add to your books"
 msgstr "Voeg toe aan je boeken"
 
 #: bookwyrm/templates/get_started/book_preview.html:10
-#: bookwyrm/templates/shelf/shelf.html:88 bookwyrm/templates/user/user.html:37
+#: bookwyrm/templates/shelf/shelf.html:93 bookwyrm/templates/user/user.html:37
 #: bookwyrm/templatetags/shelf_tags.py:14
 msgid "To Read"
 msgstr "Te lezen"
 
 #: bookwyrm/templates/get_started/book_preview.html:11
-#: bookwyrm/templates/shelf/shelf.html:89 bookwyrm/templates/user/user.html:38
+#: bookwyrm/templates/shelf/shelf.html:94 bookwyrm/templates/user/user.html:38
 #: bookwyrm/templatetags/shelf_tags.py:15
 msgid "Currently Reading"
 msgstr "Aan het lezen"
 
 #: bookwyrm/templates/get_started/book_preview.html:12
-#: bookwyrm/templates/shelf/shelf.html:90
+#: bookwyrm/templates/shelf/shelf.html:95
 #: bookwyrm/templates/snippets/shelf_selector.html:46
 #: bookwyrm/templates/snippets/shelve_button/shelve_button_dropdown_options.html:24
 #: bookwyrm/templates/snippets/shelve_button/shelve_button_options.html:12
@@ -2114,7 +2196,7 @@ msgid "Read"
 msgstr "Gelezen"
 
 #: bookwyrm/templates/get_started/book_preview.html:13
-#: bookwyrm/templates/shelf/shelf.html:91 bookwyrm/templates/user/user.html:40
+#: bookwyrm/templates/shelf/shelf.html:96 bookwyrm/templates/user/user.html:40
 #: bookwyrm/templatetags/shelf_tags.py:17
 msgid "Stopped Reading"
 msgstr "Gestopt met lezen"
@@ -2799,7 +2881,7 @@ msgstr "Je kunt een groep aanmaken of lid worden van een groep met andere gebrui
 
 #: bookwyrm/templates/guided_tour/user_groups.html:11
 #: bookwyrm/templates/guided_tour/user_profile.html:55
-#: bookwyrm/templates/preferences/export-user.html:36
+#: bookwyrm/templates/preferences/export-user.html:37
 #: bookwyrm/templates/user/groups.html:6 bookwyrm/templates/user/layout.html:95
 msgid "Groups"
 msgstr "Groepen"
@@ -2914,11 +2996,13 @@ msgid "You have %(display_left)s left."
 msgstr "Je hebt %(display_left)s over."
 
 #: bookwyrm/templates/import/import.html:33
+#: bookwyrm/templates/import/import_user.html:40
 #, python-format
 msgid "On average, recent imports have taken %(hours)s hours."
 msgstr "Recente imports hebben gemiddeld %(hours)s uur in beslag genomen."
 
 #: bookwyrm/templates/import/import.html:37
+#: bookwyrm/templates/import/import_user.html:44
 #, python-format
 msgid "On average, recent imports have taken %(minutes)s minutes."
 msgstr "Recente imports hebben gemiddeld %(minutes)s minuten in beslag genomen."
@@ -2944,77 +3028,81 @@ msgid "OpenLibrary (CSV)"
 msgstr "OpenLibrary (CSV)"
 
 #: bookwyrm/templates/import/import.html:70
+msgid "OpenReads (CSV)"
+msgstr ""
+
+#: bookwyrm/templates/import/import.html:73
 msgid "Calibre (CSV)"
 msgstr "Calibre (CSV)"
 
-#: bookwyrm/templates/import/import.html:73
+#: bookwyrm/templates/import/import.html:76
 msgid "BookWyrm (CSV)"
 msgstr "BoekenWyrm (CSV)"
 
-#: bookwyrm/templates/import/import.html:79
+#: bookwyrm/templates/import/import.html:82
 msgid "You can download your Goodreads data from the <a href=\"https://www.goodreads.com/review/import\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Import/Export page</a> of your Goodreads account."
 msgstr "Je kunt je Goodreads gegevens downloaden met behulp van de <a href=\"https://www.goodreads.com/review/import\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Import/Export pagina</a> van je Goodreads account."
 
-#: bookwyrm/templates/import/import.html:88
-#: bookwyrm/templates/import/import_user.html:49
+#: bookwyrm/templates/import/import.html:91
+#: bookwyrm/templates/import/import_user.html:64
 msgid "Data file:"
 msgstr "Data bestand:"
 
-#: bookwyrm/templates/import/import.html:96
+#: bookwyrm/templates/import/import.html:99
 msgid "Include reviews"
 msgstr "Recensies toevoegen"
 
-#: bookwyrm/templates/import/import.html:101
+#: bookwyrm/templates/import/import.html:104
 msgid "Create new shelves if they do not exist"
 msgstr "Maak nieuwe planken aan als deze niet bestaan"
 
-#: bookwyrm/templates/import/import.html:106
+#: bookwyrm/templates/import/import.html:109
 msgid "Privacy setting for imported reviews and shelves:"
 msgstr "Privacyinstelling voor geïmporteerde recensies en boekenplanken:"
 
-#: bookwyrm/templates/import/import.html:113
-#: bookwyrm/templates/import/import.html:115
-#: bookwyrm/templates/import/import_user.html:155
-#: bookwyrm/templates/import/import_user.html:157
+#: bookwyrm/templates/import/import.html:116
+#: bookwyrm/templates/import/import.html:118
+#: bookwyrm/templates/import/import_user.html:170
+#: bookwyrm/templates/import/import_user.html:172
 #: bookwyrm/templates/settings/federation/instance_blocklist.html:78
 msgid "Import"
 msgstr "Importeren"
 
-#: bookwyrm/templates/import/import.html:116
-#: bookwyrm/templates/import/import_user.html:158
+#: bookwyrm/templates/import/import.html:119
+#: bookwyrm/templates/import/import_user.html:173
 msgid "You've reached the import limit."
 msgstr "Je hebt de limiet voor importeren bereikt."
 
-#: bookwyrm/templates/import/import.html:125
+#: bookwyrm/templates/import/import.html:128
 #: bookwyrm/templates/import/import_user.html:27
 msgid "Imports are temporarily disabled; thank you for your patience."
 msgstr "Importeren is tijdelijk uitgeschakeld. Bedankt voor je geduld."
 
-#: bookwyrm/templates/import/import.html:132
-#: bookwyrm/templates/import/import_user.html:166
+#: bookwyrm/templates/import/import.html:135
+#: bookwyrm/templates/import/import_user.html:181
 msgid "Recent Imports"
 msgstr "Recent geïmporteerd"
 
-#: bookwyrm/templates/import/import.html:137
-#: bookwyrm/templates/import/import_user.html:171
+#: bookwyrm/templates/import/import.html:140
+#: bookwyrm/templates/import/import_user.html:186
 #: bookwyrm/templates/settings/imports/imports.html:202
 #: bookwyrm/templates/settings/imports/imports.html:292
 msgid "Date Created"
 msgstr "Datum aangemaakt"
 
-#: bookwyrm/templates/import/import.html:140
-#: bookwyrm/templates/import/import_user.html:174
+#: bookwyrm/templates/import/import.html:143
+#: bookwyrm/templates/import/import_user.html:189
 msgid "Last Updated"
 msgstr "Laatst bijgewerkt"
 
-#: bookwyrm/templates/import/import.html:143
+#: bookwyrm/templates/import/import.html:146
 #: bookwyrm/templates/settings/imports/imports.html:211
 msgid "Items"
 msgstr "Items"
 
-#: bookwyrm/templates/import/import.html:152
-#: bookwyrm/templates/import/import_user.html:183
-#: bookwyrm/templates/preferences/export-user.html:96
+#: bookwyrm/templates/import/import.html:155
+#: bookwyrm/templates/import/import_user.html:198
+#: bookwyrm/templates/preferences/export-user.html:115
 msgid "No recent imports"
 msgstr "Geen recente imports"
 
@@ -3038,18 +3126,22 @@ msgid "Imports"
 msgstr "Imports"
 
 #: bookwyrm/templates/import/import_status.html:39
+#: bookwyrm/templates/import/user_import_status.html:35
 msgid "Import started:"
 msgstr "Importeren gestart:"
 
 #: bookwyrm/templates/import/import_status.html:48
+#: bookwyrm/templates/import/user_import_status.html:99
 msgid "In progress"
 msgstr "In behandeling"
 
 #: bookwyrm/templates/import/import_status.html:50
+#: bookwyrm/templates/import/user_import_status.html:101
 msgid "Refresh"
 msgstr "Vernieuw"
 
 #: bookwyrm/templates/import/import_status.html:72
+#: bookwyrm/templates/import/user_import_status.html:123
 #: bookwyrm/templates/settings/imports/imports.html:243
 #: bookwyrm/templates/settings/imports/imports.html:320
 msgid "Stop import"
@@ -3068,6 +3160,7 @@ msgid "Review items"
 msgstr "Items beoordelen"
 
 #: bookwyrm/templates/import/import_status.html:89
+#: bookwyrm/templates/import/user_import_status.html:129
 #, python-format
 msgid "%(display_counter)s item failed to import."
 msgid_plural "%(display_counter)s items failed to import."
@@ -3075,6 +3168,7 @@ msgstr[0] "%(display_counter)s item kon niet worden geïmporteerd."
 msgstr[1] "%(display_counter)s items konden niet worden geïmporteerd."
 
 #: bookwyrm/templates/import/import_status.html:95
+#: bookwyrm/templates/import/user_import_status.html:135
 msgid "View and troubleshoot failed items"
 msgstr "Mislukte items bekijken en verhelpen"
 
@@ -3083,12 +3177,14 @@ msgid "Row"
 msgstr "Rij"
 
 #: bookwyrm/templates/import/import_status.html:110
-#: bookwyrm/templates/shelf/shelf.html:151
-#: bookwyrm/templates/shelf/shelf.html:173
+#: bookwyrm/templates/import/user_import_status.html:149
+#: bookwyrm/templates/shelf/shelf.html:156
+#: bookwyrm/templates/shelf/shelf.html:178
 msgid "Title"
 msgstr "Titel"
 
 #: bookwyrm/templates/import/import_status.html:113
+#: bookwyrm/templates/import/user_import_status.html:152
 msgid "ISBN"
 msgstr "ISBN"
 
@@ -3097,8 +3193,8 @@ msgid "Openlibrary key"
 msgstr "Openlibrary sleutel"
 
 #: bookwyrm/templates/import/import_status.html:121
-#: bookwyrm/templates/shelf/shelf.html:152
-#: bookwyrm/templates/shelf/shelf.html:176
+#: bookwyrm/templates/shelf/shelf.html:157
+#: bookwyrm/templates/shelf/shelf.html:181
 msgid "Author"
 msgstr "Auteur"
 
@@ -3106,13 +3202,9 @@ msgstr "Auteur"
 msgid "Shelf"
 msgstr "Boekenplank"
 
-#: bookwyrm/templates/import/import_status.html:127
-#: bookwyrm/templates/import/manual_review.html:13
-#: bookwyrm/templates/snippets/create_status.html:16
-msgid "Review"
-msgstr "Recensie"
-
 #: bookwyrm/templates/import/import_status.html:131
+#: bookwyrm/templates/import/user_import_status.html:159
+#: bookwyrm/templates/import/user_troubleshoot.html:59
 #: bookwyrm/templates/settings/link_domains/link_table.html:9
 msgid "Book"
 msgstr "Boek"
@@ -3130,6 +3222,8 @@ msgid "View imported review"
 msgstr "Bekijk geïmporteerde recensie"
 
 #: bookwyrm/templates/import/import_status.html:200
+#: bookwyrm/templates/import/user_import_status.html:68
+#: bookwyrm/templates/import/user_import_status.html:191
 msgid "Imported"
 msgstr "Geïmporteerd"
 
@@ -3165,119 +3259,119 @@ msgstr "Als u statussen (opmerkingen, recensies of citaten) wilt migreren, moet 
 
 #: bookwyrm/templates/import/import_user.html:32
 #, python-format
-msgid "Currently you are allowed to import one user every %(user_import_hours)s hours."
-msgstr "Je hebt momenteel toestemming om elke %(user_import_hours)s uur één gebruiker te importeren."
+msgid "Currently you are allowed to import one user every %(hours)s hours."
+msgstr ""
 
 #: bookwyrm/templates/import/import_user.html:33
 #, python-format
-msgid "You will next be able to import a user file at %(next_available)s"
-msgstr "Je kunt een volgend gebruikersbestand importeren binnen %(next_available)s"
+msgid "You will next be able to import a user file at %(next_time)s"
+msgstr ""
 
-#: bookwyrm/templates/import/import_user.html:41
+#: bookwyrm/templates/import/import_user.html:56
 msgid "Step 1:"
 msgstr "Stap 1:"
 
-#: bookwyrm/templates/import/import_user.html:43
+#: bookwyrm/templates/import/import_user.html:58
 msgid "Select an export file generated from another BookWyrm account. The file format should be <code>.tar.gz</code>."
 msgstr "Selecteer een exportbestand gegenereerd uit een ander BookWyrm account. De bestandsindeling moet <code>.tar.gz</code> zijn."
 
-#: bookwyrm/templates/import/import_user.html:58
+#: bookwyrm/templates/import/import_user.html:73
 msgid "Step 2:"
 msgstr "Stap 2:"
 
-#: bookwyrm/templates/import/import_user.html:60
+#: bookwyrm/templates/import/import_user.html:75
 msgid "Deselect any checkboxes for data you do not wish to include in your import."
 msgstr "Deselecteer alle selectievakjes voor gegevens die u niet wilt opnemen in uw import."
 
-#: bookwyrm/templates/import/import_user.html:71
-#: bookwyrm/templates/preferences/export-user.html:20
-#: bookwyrm/templates/shelf/shelf.html:26
+#: bookwyrm/templates/import/import_user.html:86
+#: bookwyrm/templates/preferences/export-user.html:21
+#: bookwyrm/templates/shelf/shelf.html:31
 #: bookwyrm/templates/user/relationships/followers.html:18
 #: bookwyrm/templates/user/relationships/following.html:18
 msgid "User profile"
 msgstr "Gebruikersprofiel"
 
-#: bookwyrm/templates/import/import_user.html:74
+#: bookwyrm/templates/import/import_user.html:89
 msgid "Overwrites display name, summary, and avatar"
 msgstr "Overschrijft weergavenaam, samenvatting en avatar"
 
-#: bookwyrm/templates/import/import_user.html:80
+#: bookwyrm/templates/import/import_user.html:95
 msgid "User settings"
 msgstr "Gebruikersinstellingen"
 
-#: bookwyrm/templates/import/import_user.html:83
+#: bookwyrm/templates/import/import_user.html:98
 msgid "Overwrites:"
 msgstr "Overschrijft:"
 
-#: bookwyrm/templates/import/import_user.html:86
+#: bookwyrm/templates/import/import_user.html:101
 msgid "Whether manual approval is required for other users to follow your account"
 msgstr "Of handmatige goedkeuring vereist is voor andere gebruikers om uw account te volgen"
 
-#: bookwyrm/templates/import/import_user.html:89
+#: bookwyrm/templates/import/import_user.html:104
 msgid "Whether following/followers are shown on your profile"
 msgstr "Of volgers worden weergegeven op jouw profiel"
 
-#: bookwyrm/templates/import/import_user.html:92
+#: bookwyrm/templates/import/import_user.html:107
 msgid "Whether your reading goal is shown on your profile"
 msgstr "Of je leesdoel wordt weergegeven op je profiel"
 
-#: bookwyrm/templates/import/import_user.html:95
+#: bookwyrm/templates/import/import_user.html:110
 msgid "Whether you see user follow suggestions"
 msgstr "Of u gebruikers ziet volgen suggesties"
 
-#: bookwyrm/templates/import/import_user.html:98
+#: bookwyrm/templates/import/import_user.html:113
 msgid "Whether your account is suggested to others"
 msgstr "Of uw account wordt voorgesteld aan anderen"
 
-#: bookwyrm/templates/import/import_user.html:101
+#: bookwyrm/templates/import/import_user.html:116
 msgid "Your timezone"
 msgstr "Uw tijdszone"
 
-#: bookwyrm/templates/import/import_user.html:104
+#: bookwyrm/templates/import/import_user.html:119
 msgid "Your default post privacy setting"
 msgstr "Uw standaard privacy-instelling voor post"
 
-#: bookwyrm/templates/import/import_user.html:112
+#: bookwyrm/templates/import/import_user.html:127
 msgid "Followers and following"
 msgstr "Volgers en volgen"
 
-#: bookwyrm/templates/import/import_user.html:116
+#: bookwyrm/templates/import/import_user.html:131
 msgid "User blocks"
 msgstr "Geblokkeerde gebruikers"
 
-#: bookwyrm/templates/import/import_user.html:123
-#: bookwyrm/templates/preferences/export-user.html:22
+#: bookwyrm/templates/import/import_user.html:138
+#: bookwyrm/templates/preferences/export-user.html:23
 msgid "Reading goals"
 msgstr "Leesdoelen"
 
-#: bookwyrm/templates/import/import_user.html:126
+#: bookwyrm/templates/import/import_user.html:141
 msgid "Overwrites reading goals for all years listed in the import file"
 msgstr "Overschrijft leesdoelen voor alle jaren vermeld in het importbestand"
 
-#: bookwyrm/templates/import/import_user.html:130
-#: bookwyrm/templates/preferences/export-user.html:23
+#: bookwyrm/templates/import/import_user.html:145
+#: bookwyrm/templates/preferences/export-user.html:24
 msgid "Shelves"
 msgstr "Boekenplanken"
 
-#: bookwyrm/templates/import/import_user.html:133
-#: bookwyrm/templates/preferences/export-user.html:24
+#: bookwyrm/templates/import/import_user.html:148
+#: bookwyrm/templates/preferences/export-user.html:25
 msgid "Reading history"
 msgstr "Leesgeschiedenis"
 
-#: bookwyrm/templates/import/import_user.html:136
-#: bookwyrm/templates/preferences/export-user.html:25
+#: bookwyrm/templates/import/import_user.html:151
+#: bookwyrm/templates/preferences/export-user.html:26
 msgid "Book reviews"
 msgstr "Recensies boeken"
 
-#: bookwyrm/templates/import/import_user.html:142
+#: bookwyrm/templates/import/import_user.html:157
 msgid "Comments about books"
 msgstr "Opmerkingen over boeken"
 
-#: bookwyrm/templates/import/import_user.html:145
+#: bookwyrm/templates/import/import_user.html:160
 msgid "Book lists"
 msgstr "Boekenlijst"
 
-#: bookwyrm/templates/import/import_user.html:148
+#: bookwyrm/templates/import/import_user.html:163
 msgid "Saved lists"
 msgstr "Opgeslagen lijsten"
 
@@ -3301,15 +3395,18 @@ msgid "Reject"
 msgstr "Afwijzen"
 
 #: bookwyrm/templates/import/troubleshoot.html:7
+#: bookwyrm/templates/import/user_troubleshoot.html:8
 #: bookwyrm/templates/settings/imports/imports.html:220
 msgid "Failed items"
 msgstr "Mislukte items"
 
 #: bookwyrm/templates/import/troubleshoot.html:12
+#: bookwyrm/templates/import/user_troubleshoot.html:13
 msgid "Troubleshooting"
 msgstr "Problemen oplossen"
 
 #: bookwyrm/templates/import/troubleshoot.html:20
+#: bookwyrm/templates/import/user_troubleshoot.html:23
 msgid "Re-trying an import can fix missing items in cases such as:"
 msgstr "Opnieuw importeren kan ontbrekende items oplossen in gevallen zoals:"
 
@@ -3318,16 +3415,91 @@ msgid "The book has been added to the instance since this import"
 msgstr "Het boek is toegevoegd aan de instance sinds deze import"
 
 #: bookwyrm/templates/import/troubleshoot.html:24
+#: bookwyrm/templates/import/user_troubleshoot.html:27
 msgid "A transient error or timeout caused the external data source to be unavailable."
 msgstr "Door een tijdelijke fout of een time-out was de externe gegevensbron niet beschikbaar."
 
 #: bookwyrm/templates/import/troubleshoot.html:25
+#: bookwyrm/templates/import/user_troubleshoot.html:28
 msgid "BookWyrm has been updated since this import with a bug fix"
 msgstr "BookWyrm is geüpdatet sinds deze import met een bug fix"
 
 #: bookwyrm/templates/import/troubleshoot.html:28
+#: bookwyrm/templates/import/user_troubleshoot.html:38
 msgid "Contact your admin or <a href='https://github.com/bookwyrm-social/bookwyrm/issues'>open an issue</a> if you are seeing unexpected failed items."
 msgstr "Neem contact op met je beheerder of <a href='https://github.com/bookwyrm-social/bookwyrm/issues'>open een issue</a> als je onverwachte mislukte items ziet."
+
+#: bookwyrm/templates/import/user_import_status.html:6
+#: bookwyrm/templates/import/user_import_status.html:15
+#: bookwyrm/templates/import/user_import_status.html:26
+msgid "User Import Status"
+msgstr ""
+
+#: bookwyrm/templates/import/user_import_status.html:13
+msgid "User Import Retry Status"
+msgstr ""
+
+#: bookwyrm/templates/import/user_import_status.html:22
+#: bookwyrm/templates/settings/imports/imports.html:264
+msgid "User Imports"
+msgstr "Geïmporteerde gebruikers"
+
+#: bookwyrm/templates/import/user_import_status.html:70
+#: bookwyrm/templates/settings/dashboard/user_chart.html:11
+msgid "Total"
+msgstr "Totaal"
+
+#: bookwyrm/templates/import/user_import_status.html:79
+#: bookwyrm/templates/preferences/export-user.html:27
+#: bookwyrm/templates/settings/dashboard/dashboard.html:27
+msgid "Statuses"
+msgstr "Statussen"
+
+#: bookwyrm/templates/import/user_import_status.html:85
+msgid "Follows & Blocks"
+msgstr ""
+
+#: bookwyrm/templates/import/user_import_status.html:144
+msgid "Imported books"
+msgstr "Geïmporteerde boeken"
+
+#: bookwyrm/templates/import/user_troubleshoot.html:5
+msgid "User Import Troubleshooting"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:26
+msgid "Your account was not set as an alias of the original user account"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:31
+msgid "Re-trying an import will not work in cases such as:"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:34
+msgid "A user, status, or BookWyrm server was deleted after your import file was created"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:35
+msgid "Importing statuses when your old account has been deleted"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:43
+#, python-format
+msgid "Currently you are allowed to import or retry one user every %(hours)s hours."
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:44
+#, python-format
+msgid "You will be able to retry this import at %(next_time)s"
+msgstr ""
+
+#: bookwyrm/templates/import/user_troubleshoot.html:65
+msgid "Relationship"
+msgstr "Relatie"
+
+#: bookwyrm/templates/import/user_troubleshoot.html:68
+msgid "Reason"
+msgstr "Reden"
 
 #: bookwyrm/templates/landing/invite.html:4
 #: bookwyrm/templates/landing/invite.html:8
@@ -3666,6 +3838,8 @@ msgid "List position"
 msgstr "Lijstpositie"
 
 #: bookwyrm/templates/lists/list.html:152
+#: bookwyrm/templates/settings/connectors/connector.html:28
+#: bookwyrm/templates/settings/connectors/update.html:27
 #: bookwyrm/templates/settings/link_domains/edit_domain_modal.html:23
 msgid "Set"
 msgstr "Instellen"
@@ -4419,7 +4593,7 @@ msgstr "Profiel"
 #: bookwyrm/templates/preferences/edit_user.html:64
 #: bookwyrm/templates/settings/site.html:11
 #: bookwyrm/templates/settings/site.html:89
-#: bookwyrm/templates/setup/config.html:91
+#: bookwyrm/templates/setup/config.html:85
 msgid "Display"
 msgstr "Weergave"
 
@@ -4474,100 +4648,105 @@ msgstr "Standaard privacyniveau berichten:"
 msgid "Looking for shelf privacy? You can set a separate visibility level for each of your shelves. Go to <a href=\"%(path)s\">Your Books</a>, pick a shelf from the tab bar, and click \"Edit shelf.\""
 msgstr "Op zoek naar privacy voor boekenplanken? Je kan een apart zichtbaarheidsniveau instellen voor elk van je boekenplanken. Ga naar <a href=\"%(path)s\">Jouw boeken</a>, kies een boekenplank in de tabbalk en klik op \"Bewerk boekenplank\""
 
-#: bookwyrm/templates/preferences/export-user.html:5
-#: bookwyrm/templates/preferences/export-user.html:8
+#: bookwyrm/templates/preferences/export-user.html:6
+#: bookwyrm/templates/preferences/export-user.html:9
 #: bookwyrm/templates/preferences/layout.html:55
 msgid "Export BookWyrm Account"
 msgstr "Exporteer BookWyrm Account"
 
-#: bookwyrm/templates/preferences/export-user.html:14
+#: bookwyrm/templates/preferences/export-user.html:15
 msgid "You can create an export file here. This will allow you to migrate your data to another BookWyrm account."
 msgstr "Hier kunt u een exportbestand aanmaken. Dit zal u toestaan uw gegevens te migreren naar een ander BookWyrm account."
 
-#: bookwyrm/templates/preferences/export-user.html:18
+#: bookwyrm/templates/preferences/export-user.html:19
 msgid "Your file will include:"
 msgstr "Het bestand zal bevatten:"
 
-#: bookwyrm/templates/preferences/export-user.html:21
+#: bookwyrm/templates/preferences/export-user.html:22
 msgid "Most user settings"
 msgstr "Meeste gebruikersinstellingen"
 
-#: bookwyrm/templates/preferences/export-user.html:26
-#: bookwyrm/templates/settings/dashboard/dashboard.html:27
-msgid "Statuses"
-msgstr "Statussen"
-
-#: bookwyrm/templates/preferences/export-user.html:27
+#: bookwyrm/templates/preferences/export-user.html:28
 msgid "Your own lists and saved lists"
 msgstr "Uw eigen lijsten en opgeslagen lijsten"
 
-#: bookwyrm/templates/preferences/export-user.html:28
+#: bookwyrm/templates/preferences/export-user.html:29
 msgid "Which users you follow and block"
 msgstr "Welke gebruikers u volgt en blokkeert"
 
-#: bookwyrm/templates/preferences/export-user.html:32
+#: bookwyrm/templates/preferences/export-user.html:33
 msgid "Your file will not include:"
 msgstr "Uw bestand bevat niet:"
 
-#: bookwyrm/templates/preferences/export-user.html:34
+#: bookwyrm/templates/preferences/export-user.html:35
 msgid "Direct messages"
 msgstr "Privéberichten"
 
-#: bookwyrm/templates/preferences/export-user.html:35
+#: bookwyrm/templates/preferences/export-user.html:36
 msgid "Replies to your statuses"
 msgstr "Antwoorden op uw statussen"
 
-#: bookwyrm/templates/preferences/export-user.html:37
+#: bookwyrm/templates/preferences/export-user.html:38
 msgid "Favorites"
 msgstr "Favorieten"
 
-#: bookwyrm/templates/preferences/export-user.html:41
+#: bookwyrm/templates/preferences/export-user.html:42
 msgid "In your new BookWyrm account can choose what to import: you will not have to import everything that is exported."
 msgstr "In je nieuwe BookWyrm account kan je kiezen wat je wilt importeren: je hoeft niet alles te importeren wat geëxporteerd wordt."
 
-#: bookwyrm/templates/preferences/export-user.html:44
+#: bookwyrm/templates/preferences/export-user.html:45
 msgid "If you wish to migrate any statuses (comments, reviews, or quotes) you must either set the account you are moving to as an <strong>alias</strong> of this one, or <strong>move</strong> this account to the new account, before you import your user data."
 msgstr "Als u statussen (opmerkingen, recensies of citaten) wilt migreren, moet u het account waarnaar u verplaatst instellen als een <strong>alias</strong> van dit account, of dit account naar het nieuwe account <strong>verplaatsen</strong> voordat u uw gebruikersgegevens importeert."
 
-#: bookwyrm/templates/preferences/export-user.html:49
+#: bookwyrm/templates/preferences/export-user.html:50
 msgid "New user exports are currently disabled."
 msgstr "Nieuwe gebruikersexporten zijn momenteel uitgeschakeld."
 
-#: bookwyrm/templates/preferences/export-user.html:53
+#: bookwyrm/templates/preferences/export-user.html:54
 #, python-format
 msgid "User exports settings can be changed from <a href=\"%(url)s\">the Imports page</a> in the Admin dashboard."
 msgstr "De instellingen voor gebruikersexports kunnen worden gewijzigd via <a href=\"%(url)s\" >de pagina Import in het Beheerders-dashboard</a>."
 
-#: bookwyrm/templates/preferences/export-user.html:60
+#: bookwyrm/templates/preferences/export-user.html:61
 #, python-format
 msgid "You will be able to create a new export file at %(next_available)s"
 msgstr "U kunt een nieuw exportbestand aanmaken binnen %(next_available)s"
 
-#: bookwyrm/templates/preferences/export-user.html:69
+#: bookwyrm/templates/preferences/export-user.html:72
+#, python-format
+msgid "On average, recent exports have taken %(hours)s hours."
+msgstr ""
+
+#: bookwyrm/templates/preferences/export-user.html:76
+#, python-format
+msgid "On average, recent exports have taken %(minutes)s minutes."
+msgstr ""
+
+#: bookwyrm/templates/preferences/export-user.html:88
 msgid "Create user export file"
 msgstr "Maak gebruikersexportbestand aan"
 
-#: bookwyrm/templates/preferences/export-user.html:76
+#: bookwyrm/templates/preferences/export-user.html:95
 msgid "Recent Exports"
 msgstr "Recente exporten"
 
-#: bookwyrm/templates/preferences/export-user.html:78
+#: bookwyrm/templates/preferences/export-user.html:97
 msgid "User export files will show 'complete' once ready. This may take a little while. Click the link to download your file."
 msgstr "Exportbestanden van gebruikers worden als 'voltooid' weergegeven zodra ze klaar zijn. Dit kan even duren. Klik op de link om je bestand te downloaden."
 
-#: bookwyrm/templates/preferences/export-user.html:84
+#: bookwyrm/templates/preferences/export-user.html:103
 msgid "Date"
 msgstr "Datum"
 
-#: bookwyrm/templates/preferences/export-user.html:90
+#: bookwyrm/templates/preferences/export-user.html:109
 msgid "Size"
 msgstr "Grootte"
 
-#: bookwyrm/templates/preferences/export-user.html:135
+#: bookwyrm/templates/preferences/export-user.html:153
 msgid "Download your export"
 msgstr "Download uw export"
 
-#: bookwyrm/templates/preferences/export-user.html:139
+#: bookwyrm/templates/preferences/export-user.html:157
 msgid "Archive is no longer available"
 msgstr "Archief is niet langer beschikbaar"
 
@@ -4839,7 +5018,7 @@ msgstr "Bewerken"
 #: bookwyrm/templates/settings/announcements/announcements.html:3
 #: bookwyrm/templates/settings/announcements/announcements.html:5
 #: bookwyrm/templates/settings/announcements/edit_announcement.html:15
-#: bookwyrm/templates/settings/layout.html:103
+#: bookwyrm/templates/settings/layout.html:107
 msgid "Announcements"
 msgstr "Mededelingen"
 
@@ -5046,6 +5225,7 @@ msgid "Import triggered"
 msgstr "Import geactiveerd"
 
 #: bookwyrm/templates/settings/celery.html:57
+#: bookwyrm/templates/settings/layout.html:98
 msgid "Connectors"
 msgstr "Connectoren"
 
@@ -5104,6 +5284,8 @@ msgid "Run time"
 msgstr "Looptijd"
 
 #: bookwyrm/templates/settings/celery.html:134
+#: bookwyrm/templates/settings/connectors/connector.html:22
+#: bookwyrm/templates/settings/connectors/update.html:21
 msgid "Priority"
 msgstr "Prioriteit"
 
@@ -5135,6 +5317,66 @@ msgstr "Wachtrijen leegmaken kan ernstige problemen veroorzaken, waaronder gegev
 #: bookwyrm/templates/settings/celery.html:208
 msgid "Errors"
 msgstr "Foutmeldingen"
+
+#: bookwyrm/templates/settings/connectors/available.html:15
+msgid "Finna.fi is a search service that collects material from hundreds of Finnish organisations under one roof."
+msgstr ""
+
+#: bookwyrm/templates/settings/connectors/available.html:28
+msgid "Create new connector"
+msgstr ""
+
+#: bookwyrm/templates/settings/connectors/connector.html:35
+#: bookwyrm/templates/settings/connectors/update.html:33
+#: bookwyrm/templates/settings/users/user_info.html:87
+msgid "Deactivation reason:"
+msgstr "Reden voor deactivatie:"
+
+#: bookwyrm/templates/settings/connectors/connector.html:50
+#: bookwyrm/templates/settings/connectors/update.html:47
+msgid "Deactivate"
+msgstr "Deactiveren"
+
+#: bookwyrm/templates/settings/connectors/connector.html:61
+#: bookwyrm/templates/settings/connectors/update.html:58
+msgid "Activate"
+msgstr "Activeren"
+
+#: bookwyrm/templates/settings/connectors/connectors.html:4
+#: bookwyrm/templates/settings/connectors/connectors.html:6
+msgid "Connector Settings"
+msgstr ""
+
+#: bookwyrm/templates/settings/connectors/connectors.html:11
+msgid "Connectors are sources of data about books and authors."
+msgstr ""
+
+#: bookwyrm/templates/settings/connectors/connectors.html:12
+msgid "The priority determines the order in which search results appear. The highest priority is <code>1</code>. The default priority is <code>2</code>."
+msgstr "De prioriteit bepaalt in welke volgorde de zoekresultaten worden weergegeven. De hoogste prioriteit is <code>1</code>. De standaard prioriteit is <code>2</code>."
+
+#: bookwyrm/templates/settings/connectors/connectors.html:14
+msgid "Connector settings only determine whether a connector will be used to deliver search results. To manage more interactions with other federated servers, including domain blocks, see"
+msgstr ""
+
+#: bookwyrm/templates/settings/connectors/connectors.html:14
+#: bookwyrm/templates/settings/federation/edit_instance.html:12
+#: bookwyrm/templates/settings/federation/instance.html:24
+#: bookwyrm/templates/settings/federation/instance_blocklist.html:12
+#: bookwyrm/templates/settings/federation/instance_list.html:3
+#: bookwyrm/templates/settings/federation/instance_list.html:5
+#: bookwyrm/templates/settings/layout.html:47
+msgid "Federated Instances"
+msgstr "Gefedereerde instances"
+
+#: bookwyrm/templates/settings/connectors/update.html:66
+msgid "should be updated. Check recent release notes for more information."
+msgstr "moet worden bijgewerkt. Controleer de recente release-notities voor meer informatie."
+
+#: bookwyrm/templates/settings/connectors/update.html:76
+#: bookwyrm/templates/snippets/create_status/post_options_block.html:19
+msgid "Update"
+msgstr "Bijwerken"
 
 #: bookwyrm/templates/settings/dashboard/dashboard.html:6
 #: bookwyrm/templates/settings/dashboard/dashboard.html:8
@@ -5192,10 +5434,6 @@ msgstr "Registraties"
 #: bookwyrm/templates/settings/dashboard/status_chart.html:11
 msgid "Statuses posted"
 msgstr "Statussen geplaatst"
-
-#: bookwyrm/templates/settings/dashboard/user_chart.html:11
-msgid "Total"
-msgstr "Totaal"
 
 #: bookwyrm/templates/settings/dashboard/warnings/check_for_updates.html:12
 msgid "Would you like to automatically check for new BookWyrm releases? (recommended)"
@@ -5298,7 +5536,7 @@ msgid "Successfully sent test email."
 msgstr "Test e-mail succesvol verzonden."
 
 #: bookwyrm/templates/settings/email_config.html:32
-#: bookwyrm/templates/setup/config.html:102
+#: bookwyrm/templates/setup/config.html:96
 msgid "Email sender:"
 msgstr "E-mail afzender:"
 
@@ -5345,15 +5583,6 @@ msgstr "Test e-mail verzenden"
 #: bookwyrm/templates/settings/federation/instance_list.html:10
 msgid "Add instance"
 msgstr "Instance toevoegen"
-
-#: bookwyrm/templates/settings/federation/edit_instance.html:12
-#: bookwyrm/templates/settings/federation/instance.html:24
-#: bookwyrm/templates/settings/federation/instance_blocklist.html:12
-#: bookwyrm/templates/settings/federation/instance_list.html:3
-#: bookwyrm/templates/settings/federation/instance_list.html:5
-#: bookwyrm/templates/settings/layout.html:47
-msgid "Federated Instances"
-msgstr "Gefedereerde instances"
 
 #: bookwyrm/templates/settings/federation/edit_instance.html:28
 #: bookwyrm/templates/settings/federation/instance_blocklist.html:28
@@ -5429,12 +5658,6 @@ msgstr "Notities"
 #: bookwyrm/templates/settings/federation/instance.html:97
 msgid "<em>No notes</em>"
 msgstr "<em>Geen notities</em>"
-
-#: bookwyrm/templates/settings/federation/instance.html:116
-#: bookwyrm/templates/settings/link_domains/link_domains.html:87
-#: bookwyrm/templates/snippets/block_button.html:5
-msgid "Block"
-msgstr "Blokkeren"
 
 #: bookwyrm/templates/settings/federation/instance.html:117
 msgid "All users from this instance will be deactivated."
@@ -5634,10 +5857,6 @@ msgstr "Succesvolle items"
 msgid "No matching imports found."
 msgstr "Geen overeenkomende importen gevonden."
 
-#: bookwyrm/templates/settings/imports/imports.html:264
-msgid "User Imports"
-msgstr "Geïmporteerde gebruikers"
-
 #: bookwyrm/templates/settings/invites/manage_invite_requests.html:4
 #: bookwyrm/templates/settings/invites/manage_invite_requests.html:11
 #: bookwyrm/templates/settings/invites/manage_invite_requests.html:25
@@ -5821,18 +6040,18 @@ msgstr "Celery status"
 msgid "Scheduled tasks"
 msgstr "Geplande taken"
 
-#: bookwyrm/templates/settings/layout.html:99
+#: bookwyrm/templates/settings/layout.html:103
 msgid "Instance Settings"
 msgstr "Instance Instellingen"
 
-#: bookwyrm/templates/settings/layout.html:107
+#: bookwyrm/templates/settings/layout.html:111
 #: bookwyrm/templates/settings/site.html:4
 #: bookwyrm/templates/settings/site.html:6
 msgid "Site Settings"
 msgstr "Site Instellingen"
 
-#: bookwyrm/templates/settings/layout.html:113
-#: bookwyrm/templates/settings/layout.html:116
+#: bookwyrm/templates/settings/layout.html:117
+#: bookwyrm/templates/settings/layout.html:120
 #: bookwyrm/templates/settings/registration.html:4
 #: bookwyrm/templates/settings/registration.html:6
 #: bookwyrm/templates/settings/registration_limited.html:4
@@ -5840,7 +6059,7 @@ msgstr "Site Instellingen"
 msgid "Registration"
 msgstr "Registratie"
 
-#: bookwyrm/templates/settings/layout.html:122
+#: bookwyrm/templates/settings/layout.html:126
 #: bookwyrm/templates/settings/site.html:107
 #: bookwyrm/templates/settings/themes.html:4
 #: bookwyrm/templates/settings/themes.html:6
@@ -6341,10 +6560,6 @@ msgstr "Handmatig goedgekeurde volgers:"
 msgid "Discoverable:"
 msgstr "Vindbaar:"
 
-#: bookwyrm/templates/settings/users/user_info.html:87
-msgid "Deactivation reason:"
-msgstr "Reden voor deactivatie:"
-
 #: bookwyrm/templates/settings/users/user_info.html:102
 msgid "Instance details"
 msgstr "Instance details"
@@ -6438,8 +6653,8 @@ msgid "Your domain appears to be misconfigured. It should not include protocol o
 msgstr "Je domein lijkt verkeerd ingesteld te zijn. Het mag geen protocol of slashes bevatten."
 
 #: bookwyrm/templates/setup/config.html:42
-msgid "You are running BookWyrm in production mode without https. <strong>USE_HTTPS</strong> should be enabled in production."
-msgstr "Je draait BookWyrm in productie modus zonder https. <strong>USE_HTTPS</strong> zou moeten zijn ingeschakeld bij gebruik in productie."
+msgid "You are running BookWyrm with <code>localhost</code>. This should <strong>never</strong> be used in a production environment."
+msgstr ""
 
 #: bookwyrm/templates/setup/config.html:52 bookwyrm/templates/user_menu.html:44
 msgid "Settings"
@@ -6449,39 +6664,39 @@ msgstr "Instellingen"
 msgid "Instance domain:"
 msgstr "Instance domein:"
 
-#: bookwyrm/templates/setup/config.html:63
-msgid "Protocol:"
-msgstr "Protocol:"
+#: bookwyrm/templates/setup/config.html:62
+msgid "Instance base URL:"
+msgstr ""
 
-#: bookwyrm/templates/setup/config.html:81
+#: bookwyrm/templates/setup/config.html:75
 msgid "Using S3:"
 msgstr "Gebruik S3:"
 
-#: bookwyrm/templates/setup/config.html:95
+#: bookwyrm/templates/setup/config.html:89
 msgid "Default interface language:"
 msgstr "Standaard taal interface:"
 
-#: bookwyrm/templates/setup/config.html:109
+#: bookwyrm/templates/setup/config.html:103
 msgid "Enable preview images:"
 msgstr "Preview afbeeldingen inschakelen:"
 
-#: bookwyrm/templates/setup/config.html:116
+#: bookwyrm/templates/setup/config.html:110
 msgid "Enable image thumbnails:"
 msgstr "Miniaturen voor afbeeldingen inschakelen:"
 
-#: bookwyrm/templates/setup/config.html:128
+#: bookwyrm/templates/setup/config.html:122
 msgid "Does everything look right?"
 msgstr "Ziet alles er goed uit?"
 
-#: bookwyrm/templates/setup/config.html:130
+#: bookwyrm/templates/setup/config.html:125
 msgid "This is your last chance to set your domain and protocol."
 msgstr "Dit is je laatste kans om je domein en protocol in te stellen."
 
-#: bookwyrm/templates/setup/config.html:144
+#: bookwyrm/templates/setup/config.html:139
 msgid "You can change your instance settings in the <code>.env</code> file on your server."
 msgstr "Je kan jouw instance instellingen wijzigen in het <code>.env</code> bestand op je server."
 
-#: bookwyrm/templates/setup/config.html:148
+#: bookwyrm/templates/setup/config.html:143
 msgid "View installation instructions"
 msgstr "Bekijk installatie-instructies"
 
@@ -6498,7 +6713,7 @@ msgid "Need help?"
 msgstr "Hulp nodig?"
 
 #: bookwyrm/templates/shelf/create_shelf_form.html:5
-#: bookwyrm/templates/shelf/shelf.html:74
+#: bookwyrm/templates/shelf/shelf.html:79
 msgid "Create shelf"
 msgstr "Nieuwe boekenplank maken"
 
@@ -6506,61 +6721,61 @@ msgstr "Nieuwe boekenplank maken"
 msgid "Edit Shelf"
 msgstr "Bewerk boekenplank"
 
-#: bookwyrm/templates/shelf/shelf.html:41
-#: bookwyrm/templatetags/shelf_tags.py:13 bookwyrm/views/shelf/shelf.py:59
+#: bookwyrm/templates/shelf/shelf.html:46
+#: bookwyrm/templatetags/shelf_tags.py:13 bookwyrm/views/shelf/shelf.py:61
 msgid "All books"
 msgstr "Alle boeken"
 
-#: bookwyrm/templates/shelf/shelf.html:66
+#: bookwyrm/templates/shelf/shelf.html:71
 msgid "Import Books"
 msgstr "Importeer boeken"
 
-#: bookwyrm/templates/shelf/shelf.html:99
+#: bookwyrm/templates/shelf/shelf.html:104
 #, python-format
 msgid "%(formatted_count)s book"
 msgid_plural "%(formatted_count)s books"
 msgstr[0] "%(formatted_count)s boek"
 msgstr[1] "%(formatted_count)s boeken"
 
-#: bookwyrm/templates/shelf/shelf.html:105
+#: bookwyrm/templates/shelf/shelf.html:110
 #, python-format
 msgid "(showing %(start)s-%(end)s)"
 msgstr "(%(start)s-%(end)s getoond)"
 
-#: bookwyrm/templates/shelf/shelf.html:119
+#: bookwyrm/templates/shelf/shelf.html:124
 msgid "Edit shelf"
 msgstr "Bewerk boekenplank"
 
-#: bookwyrm/templates/shelf/shelf.html:127
+#: bookwyrm/templates/shelf/shelf.html:132
 msgid "Delete shelf"
 msgstr "Verwijder boekenplank"
 
-#: bookwyrm/templates/shelf/shelf.html:155
-#: bookwyrm/templates/shelf/shelf.html:181
+#: bookwyrm/templates/shelf/shelf.html:160
+#: bookwyrm/templates/shelf/shelf.html:186
 msgid "Shelved"
 msgstr "Op boekenplank gezet"
 
-#: bookwyrm/templates/shelf/shelf.html:156
-#: bookwyrm/templates/shelf/shelf.html:184
+#: bookwyrm/templates/shelf/shelf.html:161
+#: bookwyrm/templates/shelf/shelf.html:189
 msgid "Started"
 msgstr "Begonnen"
 
-#: bookwyrm/templates/shelf/shelf.html:157
-#: bookwyrm/templates/shelf/shelf.html:187
+#: bookwyrm/templates/shelf/shelf.html:162
+#: bookwyrm/templates/shelf/shelf.html:192
 msgid "Finished"
 msgstr "Uitgelezen"
 
-#: bookwyrm/templates/shelf/shelf.html:157
-#: bookwyrm/templates/shelf/shelf.html:187
+#: bookwyrm/templates/shelf/shelf.html:162
+#: bookwyrm/templates/shelf/shelf.html:192
 msgid "Until"
 msgstr "Tot"
 
-#: bookwyrm/templates/shelf/shelf.html:216
+#: bookwyrm/templates/shelf/shelf.html:221
 #, python-format
 msgid "We couldn't find any books that matched %(shelves_filter_query)s"
 msgstr "We konden geen boeken vinden die overeenkomen met %(shelves_filter_query)s"
 
-#: bookwyrm/templates/shelf/shelf.html:220
+#: bookwyrm/templates/shelf/shelf.html:225
 msgid "This shelf is empty."
 msgstr "Deze boekenplank is leeg."
 
@@ -6673,10 +6888,6 @@ msgstr "Spoiler waarschuwing!"
 msgid "Comment:"
 msgstr "Opmerking:"
 
-#: bookwyrm/templates/snippets/create_status/post_options_block.html:19
-msgid "Update"
-msgstr "Bijwerken"
-
 #: bookwyrm/templates/snippets/create_status/post_options_block.html:21
 msgid "Post"
 msgstr "Plaatsen"
@@ -6747,10 +6958,6 @@ msgstr "Filters toepassen"
 msgid "Follow @%(username)s"
 msgstr "Volg @%(username)s"
 
-#: bookwyrm/templates/snippets/follow_button.html:22
-msgid "Follow"
-msgstr "Volgen"
-
 #: bookwyrm/templates/snippets/follow_button.html:31
 msgid "Undo follow request"
 msgstr "Volgverzoek ongedaan maken"
@@ -6783,7 +6990,7 @@ msgid "BookWyrm's source code is freely available. You can contribute or report 
 msgstr "De broncode van BookWyrm is vrij beschikbaar. Je kunt bijdragen of problemen melden op <a href=\"https://github.com/bookwyrm-social/bookwyrm\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">GitHub</a>."
 
 #: bookwyrm/templates/snippets/form_rate_stars.html:20
-#: bookwyrm/templates/snippets/stars.html:35
+#: bookwyrm/templates/snippets/stars.html:38
 msgid "No rating"
 msgstr "Geen beoordeling"
 
@@ -6795,7 +7002,7 @@ msgstr[0] "%(half_rating)s ster"
 msgstr[1] "%(half_rating)s sterren"
 
 #: bookwyrm/templates/snippets/form_rate_stars.html:64
-#: bookwyrm/templates/snippets/stars.html:18
+#: bookwyrm/templates/snippets/stars.html:20
 #, python-format
 msgid "%(rating)s star"
 msgid_plural "%(rating)s stars"
@@ -7024,7 +7231,7 @@ msgstr "Stop met lezen"
 msgid "Finish reading"
 msgstr "Uitgelezen"
 
-#: bookwyrm/templates/snippets/stars.html:10
+#: bookwyrm/templates/snippets/stars.html:13
 msgid "Show rating"
 msgstr "Beoordeling weergeven"
 
@@ -7403,29 +7610,44 @@ msgstr[1] "%(num)d boeken - van %(user)s"
 msgid "%(title)s: %(subtitle)s"
 msgstr "%(title)s: %(subtitle)s"
 
-#: bookwyrm/templatetags/utilities.py:129
+#: bookwyrm/templatetags/utilities.py:133
 msgid "a new user account"
 msgstr "een nieuwe gebruikersaccount"
 
-#: bookwyrm/views/rss_feed.py:35
+#: bookwyrm/views/rss_feed.py:36
 #, python-brace-format
 msgid "Status updates from {obj.display_name}"
 msgstr "Statusupdates van {obj.display_name}"
 
-#: bookwyrm/views/rss_feed.py:80
+#: bookwyrm/views/rss_feed.py:81
 #, python-brace-format
 msgid "Reviews from {obj.display_name}"
 msgstr "Recensies van {obj.display_name}"
 
-#: bookwyrm/views/rss_feed.py:122
+#: bookwyrm/views/rss_feed.py:123
 #, python-brace-format
 msgid "Quotes from {obj.display_name}"
 msgstr "Citaten van {obj.display_name}"
 
-#: bookwyrm/views/rss_feed.py:164
+#: bookwyrm/views/rss_feed.py:165
 #, python-brace-format
 msgid "Comments from {obj.display_name}"
 msgstr "Opmerkingen van {obj.display_name}"
+
+#: bookwyrm/views/rss_feed.py:219
+#, python-brace-format
+msgid "{obj.user.display_name}’s {obj.name} shelf"
+msgstr ""
+
+#: bookwyrm/views/rss_feed.py:237
+#, python-brace-format
+msgid "{obj.user.display_name}’s {obj.name} shelf: {desc}"
+msgstr ""
+
+#: bookwyrm/views/rss_feed.py:238
+#, python-brace-format
+msgid "Books added to {obj.user.name}’s {obj.name} shelf"
+msgstr ""
 
 #: bookwyrm/views/updates.py:45
 #, python-format

@@ -46,5 +46,8 @@ nginx/default.conf
 #macOS
 **/.DS_Store
 
+#QTS (system in QNAP NAS)
+**/.@__thumb/
+
 # Docker
 docker-compose.override.yml
