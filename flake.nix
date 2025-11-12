@@ -4,10 +4,23 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     utils.url = "github:numtide/flake-utils";
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
+
+    pyproject-nix = {
+      url = "github:pyproject-nix/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "utils";
+    };
+
+    uv2nix = {
+      url = "github:pyproject-nix/uv2nix";
+      inputs.pyproject-nix.follows = "pyproject-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pyproject-build-systems = {
+      url = "github:pyproject-nix/build-system-pkgs";
+      inputs.pyproject-nix.follows = "pyproject-nix";
+      inputs.uv2nix.follows = "uv2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -16,19 +29,41 @@
       self,
       nixpkgs,
       utils,
+      uv2nix,
+      pyproject-nix,
+      pyproject-build-systems,
       ...
     }@inputs:
     utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          overlays = [ inputs.poetry2nix.overlays.default ];
+        pkgs = nixpkgs.legacyPackages.${system};
+
+        workspace = uv2nix.lib.workspace.loadWorkspace {
+          workspaceRoot = ./.;
         };
+
+        pythonOverlay = workspace.mkPyprojectOverlay {
+          sourcePreference = "wheel";
+        };
+
+        pythons =
+          let
+            origPython = pkgs.python3;
+            pythonBase = pkgs.callPackage pyproject-nix.build.packages {
+              python = origPython;
+            };
+          in
+          pythonBase.overrideScope (
+            nixpkgs.lib.composeManyExtensions [
+              pyproject-build-systems.overlays.wheel
+              pythonOverlay
+              (import ./nix/pyproject-overrides.nix { inherit pkgs; })
+            ]
+          );
       in
       {
-        packages.bookwyrm = pkgs.callPackage ./nix/default.nix { };
+        packages.bookwyrm = pythons.mkVirtualEnv "bookwyrm" workspace.deps.default;
 
         defaultPackage = self.packages.${system}.bookwyrm;
       }
@@ -45,7 +80,7 @@
         };
       overlay = (
         final: prev: {
-          bookwyrm = prev.callPackage ./nix/default.nix { };
+          bookwyrm = self.packages.${final.system}.bookwyrm;
         }
       );
     };
