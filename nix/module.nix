@@ -66,7 +66,7 @@ let
     (pkgs.writeScriptBin "bookwyrm-manage" ''
       #!/usr/bin/env bash 
       source ${loadEnv}
-      exec ${bookwyrm}/libexec/bookwyrm/manage.py "$@"
+      exec ${bookwyrm}/bin/bookwyrm-manage "$@"
     '');
 in
 {
@@ -483,9 +483,9 @@ in
         ${concatStringsSep "\n" (
           mapAttrsToList (n: v: ''export ${n}="$(cat ${escapeShellArg v})"'') envSecrets
         )}
-        ${cfg.package}/libexec/bookwyrm/manage.py migrate --noinput
-        ${cfg.package}/libexec/bookwyrm/manage.py collectstatic --noinput --clear
-        ${cfg.package}/libexec/bookwyrm/manage.py compile_themes
+        ${cfg.package}/bin/bookwyrm-manage migrate --noinput
+        ${cfg.package}/bin/bookwyrm-manage collectstatic --noinput --clear
+        ${cfg.package}/bin/bookwyrm-manage compile_themes
       '';
 
       script = ''

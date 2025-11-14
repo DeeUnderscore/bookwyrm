@@ -47,6 +47,9 @@ dependencies = [
     "ua-parser[regex]==1.0.1",
 ]
 
+[project.scripts]
+bookwyrm-manage = "bookwyrm.manage:main"
+
 [dependency-groups]
 dev = ["black>=22,<23"]
 
