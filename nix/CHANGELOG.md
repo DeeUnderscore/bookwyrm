@@ -1,6 +1,9 @@
 # Bookwyrm Nix changelog
 This covers changes to the Nix and NixOS packaging of Bookwyrm, not changes to Bookwyrm core itself.
 
+## 0.8.2-nix1
+* Updated to upstream version 0.8.2. See <https://github.com/bookwyrm-social/bookwyrm/releases/tag/v0.8.2>.
+
 ## 0.8.1-nix1
 * Updated to upstream tag 0.8.1. For 0.8.0 release notes, see <https://github.com/bookwyrm-social/bookwyrm/releases/tag/v0.8.0>. Note that upstream release notes recommend checking for and deleting any user exports that may have ended up publicly fetchable. This applies to deployments with tne Nix module provided. See the above link for details.
 * Migrated from Poetry to uv, and from poetry2nix to uv2nix. poetry2nix is currently unmaintained, so uv and uv2nix are a better choice going forward.
