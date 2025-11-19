@@ -1,6 +1,6 @@
 [project]
 name = "bookwyrm"
-version = "0.8.1"
+version = "0.8.2"
 description = "Social reading and reviewing, decentralized with ActivityPub"
 requires-python = ">=3.10"
 dependencies = [
@@ -10,7 +10,7 @@ dependencies = [
     "bw-file-resubmit==0.6.0rc2",
     "celery==5.3.6",
     "colorthief==0.2.1",
-    "Django==5.2.3",
+    "Django==5.2.8",
     "django-celery-beat==2.8.1",
     "django-compressor==4.4",
     "django-csp==3.8",
