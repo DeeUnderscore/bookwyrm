@@ -476,6 +476,7 @@ in
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = cfg.stateDir;
+        TimeoutStartSec = "15min";
       };
 
       # TODO: Maybe populate static assets at bookwyrm build time?
