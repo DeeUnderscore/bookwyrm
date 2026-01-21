@@ -1,13 +1,12 @@
-""" bookwyrm settings and configuration """
-# pylint: disable=wildcard-import
-# pylint: disable=unused-wildcard-import
+"""bookwyrm settings and configuration"""
+
 from bookwyrm.settings import *
 
 QUERY_TIMEOUT = env.int("CELERY_QUERY_TIMEOUT", env.int("QUERY_TIMEOUT", 30))
 
 # pylint: disable=line-too-long
 if (password := env("REDIS_BROKER_PASSWORD", None)) is not None:
-    REDIS_BROKER_PASSWORD = requests.utils.quote(password)
+    REDIS_BROKER_PASSWORD = requests.utils.compat(password)
 else:
     REDIS_BROKER_PASSWORD = None
 REDIS_BROKER_HOST = env("REDIS_BROKER_HOST", "redis_broker")

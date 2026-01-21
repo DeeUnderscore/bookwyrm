@@ -10,7 +10,7 @@ dependencies = [
     "bw-file-resubmit==0.6.0rc2",
     "celery==5.3.6",
     "colorthief==0.2.1",
-    "Django==5.2.8",
+    "Django==5.2.9",
     "django-celery-beat==2.8.1",
     "django-compressor==4.4",
     "django-csp==3.8",
@@ -51,7 +51,7 @@ dependencies = [
 bookwyrm-manage = "bookwyrm.manage:main"
 
 [dependency-groups]
-dev = ["black>=22,<23"]
+dev = ["ruff>=0.14.7"]
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -69,6 +69,36 @@ include = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.black]
-required-version = "22"
+[tool.ruff]
+exclude = [
+    "migrations",
+]
 
+line-length = 88
+
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings  
+    "F",   # pyflakes (critical errors only)
+]
+
+ignore = [
+    "E501",   # line too long
+    "E722",   # bare except
+    "E731",   # lambda assignment
+    "F401",   # unused imports
+    "F403",   # star import (unable to detect undefined names from star imports)
+    "F405",   # `env` may be undefined, or defined from star imports
+    "F841",   # unused variable
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
