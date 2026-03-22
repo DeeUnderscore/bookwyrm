@@ -1,6 +1,9 @@
 # Bookwyrm Nix changelog
 This covers changes to the Nix and NixOS packaging of Bookwyrm, not changes to Bookwyrm core itself.
 
+## 0.8.5-nix1
+* Updated to upstream version 0.8.5. See <https://github.com/bookwyrm-social/bookwyrm/releases/tag/v0.8.5>.
+
 ## 0.8.3-nix1
 * Updated to upstream version 0.8.3. See <https://github.com/bookwyrm-social/bookwyrm/releases/tag/v0.8.3>.
 

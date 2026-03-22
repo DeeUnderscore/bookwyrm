@@ -1,6 +1,6 @@
 [project]
 name = "bookwyrm"
-version = "0.8.3"
+version = "0.8.5"
 description = "Social reading and reviewing, decentralized with ActivityPub"
 requires-python = ">=3.10"
 dependencies = [
